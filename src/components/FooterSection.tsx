@@ -1,40 +1,80 @@
+'use client';
 import Image from 'next/image';
 import iconImg from '@/assets/icon.png';
 
 export default function FooterSection() {
   return (
-    <footer id="faq" className="pt-32 pb-8 px-6 md:px-12 bg-transparent text-black flex flex-col items-center justify-center overflow-hidden transition-colors duration-1000">
-      <div className="max-w-7xl mx-auto w-full flex flex-col items-center text-center">
-        {/* CTA */}
-        <h2 className="text-5xl md:text-7xl lg:text-[6rem] font-medium tracking-tight mb-8">
-          Ready to build with us?
-        </h2>
-        <p className="text-black/60 mb-12 max-w-2xl text-lg lg:text-xl font-light">
-          Join the largest community of developers in Mumbai & Pune. Connect, learn, and grow your career with GDG Cloud.
-        </p>
-        <button className="bg-black text-white px-10 py-4 rounded-full text-lg font-medium hover:scale-105 transition-transform mb-40 shadow-xl">
-          Become a Member
-        </button>
+    <footer id="contact" className="bg-transparent text-black overflow-hidden transition-colors duration-1000">
 
-        {/* GDG LOGO & BIG LETTERS */}
-        <div className="w-full flex flex-col items-center relative">
-          <div className="absolute -top-24 bg-white p-4 rounded-full shadow-sm border border-black/5">
-            <Image src={iconImg} alt="GDG Logo" width={80} height={80} className="" />
+      {/* ── Upper content area ── */}
+      <div className="max-w-7xl mx-auto px-6 md:px-12 pt-32 pb-20 flex flex-col md:flex-row justify-between gap-16">
+
+        {/* Left: nav links */}
+        <nav className="flex flex-col gap-2 text-sm text-black/50">
+          {['Home', 'Events', 'Community', 'Team', 'Contact'].map(link => (
+            <a key={link} href={`#${link.toLowerCase()}`}
+              className="hover:text-black transition-colors font-medium">
+              {link}
+            </a>
+          ))}
+        </nav>
+
+        {/* Center: follow us */}
+        <div className="flex flex-col items-center text-center gap-4">
+          <span className="text-xs font-semibold uppercase tracking-[0.2em] text-black/40">Follow us</span>
+          <p className="text-sm text-black/60">contact@gdgcloudmumbai.com</p>
+          <div className="flex gap-3 mt-2">
+            {[
+              { label: 'Twitter/X', href: 'https://x.com/gdgcloudmumbai', icon: '𝕏' },
+              { label: 'LinkedIn', href: '#', icon: 'in' },
+              { label: 'Instagram', href: '#', icon: '▣' },
+              { label: 'YouTube', href: '#', icon: '▶' },
+            ].map(s => (
+              <a key={s.label} href={s.href} aria-label={s.label} target="_blank" rel="noreferrer"
+                className="w-10 h-10 rounded-full bg-black text-white flex items-center justify-center text-xs font-bold hover:scale-110 transition-transform">
+                {s.icon}
+              </a>
+            ))}
           </div>
-          <h1 className="text-[13vw] leading-none font-bold tracking-tighter text-black whitespace-nowrap opacity-100 w-full text-center mix-blend-difference mt-10">
-            GDG CLOUD MUMBAI
-          </h1>
         </div>
-        
-        {/* Bottom Bar */}
-        <div className="w-full flex flex-col md:flex-row justify-between items-center mt-16 pt-8 border-t border-black/10 text-black/40 text-sm font-medium">
-          <p>© 2026 GDG Cloud Mumbai & Pune. All rights reserved.</p>
-          <div className="flex gap-8 mt-6 md:mt-0">
-            <a href="#" className="hover:text-black transition-colors uppercase tracking-wider text-xs">Twitter</a>
-            <a href="#" className="hover:text-black transition-colors uppercase tracking-wider text-xs">LinkedIn</a>
-            <a href="#" className="hover:text-black transition-colors uppercase tracking-wider text-xs">Instagram</a>
-          </div>
+
+        {/* Right: address */}
+        <div className="flex flex-col items-end text-right text-sm text-black/50 gap-1">
+          <span className="text-xs font-semibold uppercase tracking-[0.2em] text-black/40 mb-2">Based in</span>
+          <span>Mumbai,</span>
+          <span>Maharashtra,</span>
+          <span>India 🇮🇳</span>
         </div>
+      </div>
+
+      {/* ── Bottom bar (copyright) ── */}
+      <div className="max-w-7xl mx-auto px-6 md:px-12 py-6 flex flex-col md:flex-row justify-between items-center border-t border-black/10 text-black/35 text-xs gap-4">
+        <span>© 2026 GDG Cloud Mumbai. All rights reserved.</span>
+        <div className="flex gap-6">
+          <a href="#" className="hover:text-black transition-colors uppercase tracking-wider">Privacy Policy</a>
+          <a href="#" className="hover:text-black transition-colors uppercase tracking-wider">Terms &amp; Conditions</a>
+        </div>
+      </div>
+
+      {/* ── Brand display block ── */}
+      <div className="w-full flex flex-col items-center pt-10 pb-0 relative select-none">
+        {/* Icon above */}
+        <div className="mb-6 bg-white rounded-full p-3 shadow-sm border border-black/8">
+          <Image src={iconImg} alt="GDG Logo" width={56} height={56} />
+        </div>
+
+        {/* "GDG Cloud" — medium weight label */}
+        <p className="text-base md:text-lg font-medium tracking-[0.25em] uppercase text-black/50 mb-2">
+          GDG Cloud
+        </p>
+
+        {/* "MUMBAI" — giant display text flush to bottom */}
+        <h1
+          className="font-black uppercase leading-none tracking-tighter text-black w-full text-center"
+          style={{ fontSize: 'clamp(4rem, 18vw, 18rem)', lineHeight: 0.88 }}
+        >
+          MUMBAI
+        </h1>
       </div>
     </footer>
   );

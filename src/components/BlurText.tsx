@@ -25,7 +25,7 @@ export const BlurText: React.FC<BlurTextProps> = ({
   rootMargin = '0px',
   animationFrom,
   animationTo,
-  easing = 'easeOutCubic',
+  easing: _easing = 'easeOutCubic',
   onAnimationComplete,
 }) => {
   const elements = animateBy === 'words' ? text.split(' ') : text.split('');
@@ -67,16 +67,16 @@ export const BlurText: React.FC<BlurTextProps> = ({
     elements.length,
     elements.map((_, i) => ({
       from: animationFrom || defaultFrom,
-        to: inView
+      to: inView
         ? async (next: (arg: Record<string, unknown>) => Promise<void>) => {
-            for (const step of animationTo || defaultTo) {
-              await next(step);
-            }
-            animatedCount.current += 1;
-            if (animatedCount.current === elements.length && onAnimationComplete) {
-              onAnimationComplete();
-            }
+          for (const step of animationTo || defaultTo) {
+            await next(step);
           }
+          animatedCount.current += 1;
+          if (animatedCount.current === elements.length && onAnimationComplete) {
+            onAnimationComplete();
+          }
+        }
         : animationFrom || defaultFrom,
       delay: i * delay,
       config: { easing: (t: number) => t }, // You'd need a proper easing function if not using default
@@ -92,7 +92,7 @@ export const BlurText: React.FC<BlurTextProps> = ({
             ...props,
             display: 'inline-block',
             willChange: 'transform, filter, opacity',
-          } as React.CSSProperties}
+          } as unknown as React.CSSProperties}
         >
           {elements[index] === ' ' ? '\u00A0' : elements[index]}
           {animateBy === 'words' && index < elements.length - 1 && '\u00A0'}

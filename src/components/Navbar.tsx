@@ -42,7 +42,7 @@ export default function Navbar() {
             <Link
               key={link}
               href={`#${link.toLowerCase()}`}
-              className="text-sm font-medium text-black/60 hover:text-black transition-colors"
+              className="text-md font-medium text-white/60 hover:text-black transition-colors"
             >
               {link}
             </Link>

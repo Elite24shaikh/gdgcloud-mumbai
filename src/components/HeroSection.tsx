@@ -34,6 +34,7 @@ export default function HeroSection({ isReady = true }: { isReady?: boolean }) {
   return (
     <section
       ref={sectionRef}
+      id="home"
       className="relative h-screen w-full flex flex-col items-center justify-center overflow-hidden bg-black"
     >
       {/* ── Video background ── */}
